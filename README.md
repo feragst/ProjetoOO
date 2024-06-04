@@ -3,9 +3,9 @@
 
 ### Tasks
 
-- [x] Menu basico
+- [X] Menu basico
 - [ ] Controllers
-- [ ] Models
+- [X] Models
 - [ ] CRUD
 - [ ] Alteracao Usuario
 - [ ] Testar casos
