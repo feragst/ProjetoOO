@@ -4,6 +4,7 @@
  */
 package models;
 
+import java.util.ArrayList;
 /**
  *
  * @author ferag
@@ -26,54 +27,49 @@ public class Time {
         this.nome = nome;
     }
 
-    public int getAnoFundacao() {
-        return anoFundacao;
-    }
 
-    public void setAnoFundacao(int anoFundacao) {
-        this.anoFundacao = anoFundacao;
-    }
-
-    public int getQtdTitulos() {
-        return qtdTitulos;
-    }
-
-    public void setQtdTitulos(int qtdTitulos) {
-        this.qtdTitulos = qtdTitulos;
-    }
-
-    public int getDivisao() {
-        return divisao;
-    }
-
-    public void setDivisao(int divisao) {
-        this.divisao = divisao;
-    }
     private int id;
     private String nome;
-    private int anoFundacao;
-    private int qtdTitulos;
-    private int divisao;
+    private ArrayList<Jogador> jogadores = new ArrayList();
     
-    public Time (int id, String nome, int anoFundacao,  int qtdTitulos, int divisao){
+  
+    
+    public Time (int id, String nome, ArrayList<Jogador> jogadores){
         this.id = id;
         this.nome = nome;
-        this.anoFundacao = anoFundacao;
-        this.qtdTitulos = qtdTitulos;
-        this.divisao = divisao;
+        this.jogadores = jogadores;
+
     }
-     public Time (String nome, int anoFundacao,  int qtdTitulos, int divisao){
+     public Time (String nome, ArrayList<Jogador> jogadores){
         this.nome = nome;
-        this.anoFundacao = anoFundacao;
-        this.qtdTitulos = qtdTitulos;
-        this.divisao = divisao;
+
+    }
+     public  Time(){
+         
+     }
+     
+     public ArrayList<Jogador> getJogadores(){
+         return jogadores;
+     }
+     
+     public void setJogadores (ArrayList<Jogador> jogadores){
+         
+     }
+     
+       public void addJogador(Jogador j) {
+        this.jogadores.add(j);
     }
        public void printAttributes() {
         System.out.println("ID: " + id);
         System.out.println("Nome do time: " + nome);
-        System.out.println("Ano de fundacao: " + anoFundacao);
-        System.out.println("Quantidade de titulos: " + qtdTitulos);
-        System.out.println("Divisao: " + divisao);
+        System.out.println("Jogadores: " + jogadores.size());
+        System.out.println("##");
+        for (int i = 0; i < this.jogadores.size(); i++) {
+            Jogador j = jogadores.get(i);
+            j.printAttributes();
+        }
+        System.out.println("##");
+  
        }
     
     
