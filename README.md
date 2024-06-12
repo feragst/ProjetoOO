@@ -24,7 +24,9 @@
 - [X] CRUD
 - [ ] Alteracao Usuario
 - [ ] Testar casos
+- [ ] Melhorias
 - [ ] Video
+      
 <br/>
 <br/>
 <br/>
