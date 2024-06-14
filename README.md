@@ -23,9 +23,9 @@
 - [X] Models
 - [X] CRUD
 - [ ] Alteracao Usuario
-- [ ] Testar casos
-- [ ] Melhorias
-- [ ] Video
+- [X] Testar casos
+- [X] Melhorias
+- [X] Video
       
 <br/>
 <br/>
