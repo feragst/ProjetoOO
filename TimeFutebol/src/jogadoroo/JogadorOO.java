@@ -28,91 +28,96 @@ public class JogadorOO {
             opcao = Entrada.leiaInt(""
                     + "[1] Criar Jogador\n"
                     + "[2] Listar Jogadores\n"
-                    + "[3] Recuperar um Jogador\n"
-                    + "[4] Apagar um Jogador\n"
-                    + "[5] Editar um Jogador\n"
-                    + "[6] Criar um Time\n"
-                    + "[7] Listar times\n"
-                    + "[8] Adicionar Jogador ao time\n"
+                    + "[3] Apagar um Jogador\n"
+                    + "[4] Editar um Jogador\n"
+                    + "[5] Criar um Time\n"
+                    + "[6] Listar times\n"
+                    + "[7] Adicionar Jogador ao time\n"
+                    + "[8] Apagar um Jogador do time \n"
                     + "[9] Sair");
-        }
         
-        switch (opcao) {
-            case 1: {
-                Jogador j = new Jogador();
-
-                j.setNome(Entrada.leiaString("Informe o nome do jogador"));
-                j.setNrCamisa(Entrada.leiaInt("Informe o número da camisa do jogador"));
-                j.setIdade(Entrada.leiaInt("Informe a idade do jogador"));
-                j.setPosicao(Entrada.leiaString("Informe a posicao do jogador"));
+        
+                    switch (opcao) {
+                case 1: {
+                    Jogador j = new Jogador();
+                    j.setNome(Entrada.leiaString("Informe o nome do jogador"));
+                    j.setNrCamisa(Entrada.leiaInt("Informe o numero da camisa do jogador"));
+                    j.setIdade(Entrada.leiaInt("Informe a idade do jogador"));
+                    j.setPosicao(Entrada.leiaString("Informe a posição do jogador"));
+                    jController.save(j);
+                    break;
+                }
+                case 2: {
+                    jController.print();
+                    break;
+                }
                
-
-                jController.save(j);
-            }
-            case 2: {
-                jController.print();
-            }
-            case 3: {
-                Jogador j = jController.readOne(Entrada.leiaInt("Digite o código (ID) do jogador"));
-                if (j != null) {
-                    j.printAttributes();
-                } else {
-                    System.out.println("Boneco não encontrado");
-                }
-            }
-            case 4: {
-                 Jogador j = jController.readOne(Entrada.leiaInt("Digite o código (ID) do jogador"));
-                if (j != null) {
-                    jController.delete(j);
-                } else {
-                    System.out.println("Jogador não encontrado");
-                }
-            }
-            case 5: {
-                Jogador j = jController.readOne(Entrada.leiaInt("Digite o código (ID) do jogador"));
-                if (j != null) {
-                    jController.edit(j);
-                } else {
-                    System.out.println("Jogador não encontrado");
-                }
-            }
-            case 6: {
-                Time t = new Time();
-                t.setNome(Entrada.leiaString("Informe o Nome do time"));
-                tController.save(t);
-            }
-            case 7: {
-                tController.print();
-            }
-            case 8: {
-                tController.print();
-                Time t = tController.readOne(Entrada.leiaInt("Digite o código (id) do time que deseja adicionar o jogador"));
-
-                if (t != null) {
-
-                    char continuar = 's';
-                    while (continuar == 's')
-                    {
-
-                        jController.print();
-                        Jogador j = jController.readOne(Entrada.leiaInt("Digite o código (id) do jogador que deseja adicionar"));
-
-                        if (j != null) {
-                            j.addJogador(j);
-                        } else {
-                            System.out.println("Jogador não encontrado");
-                        }
-
-                        continuar = Entrada.leiaChar("Deseja adicionar mais um boneco? [s / n]");
+                case 3: {
+                    Jogador j = jController.readOne(Entrada.leiaInt("Digite o código (ID) do jogador"));
+                    if (j != null) {
+                        jController.delete(j);
+                    } else {
+                        System.out.println("Jogador não encontrado");
                     }
-                } else {
-                    System.out.println("Loja não encontrada");
+                    break;
+                }
+                case 4: {
+                    Jogador j = jController.readOne(Entrada.leiaInt("Digite o código (ID) do jogador"));
+                    if (j != null) {
+                        jController.edit(j);
+                    } else {
+                        System.out.println("Jogador não encontrado");
+                    }
+                    break;
+                }
+                case 5: {
+                    Time t = new Time();
+                    t.setNome(Entrada.leiaString("Informe o Nome do time"));
+                    tController.save(t);
+                    break;
+                }
+                case 6: {
+                    tController.print();
+                    break;
+                }
+                case 7: {
+                    tController.print();
+                    Time t = tController.readOne(Entrada.leiaInt("Digite o código (ID) do time que deseja adicionar o jogador"));
+
+                    if (t != null) {
+                        char continuar = 's';
+                        while (continuar == 's') {
+                            jController.print();
+                            Jogador j = jController.readOne(Entrada.leiaInt("Digite o código (ID) do jogador que deseja adicionar"));
+                            if (j != null) {
+                                t.addJogador(j); // Supondo que `addJogador` seja um método da classe `Time`
+                            } else {
+                                System.out.println("Jogador não encontrado");
+                            }
+                            continuar = Entrada.leiaChar("Deseja adicionar mais um jogador? [s / n]");
+                        }
+                    } else {
+                        System.out.println("Time não encontrado");
+                    }
+                    break;
+                }
+                case 8: {
+                    tController.print();
+                    int timeId = Entrada.leiaInt("Digite o código (ID) do time");
+                    int jogadorId = Entrada.leiaInt("Digite o código (ID) do jogador a ser removido");
+                    tController.delete(timeId, jogadorId);
+                    break;
+                }
+                case 9: {
+                    System.out.println("Saindo...");
+                    break;
+                }
+                default: {
+                    System.out.println("Opção inválida, tente novamente.");
                 }
             }
-            
         }
-        
-        
+
     }
     
 }

@@ -59,11 +59,21 @@ public class Time {
        public void addJogador(Jogador j) {
         this.jogadores.add(j);
     }
+        public void removeJogador(int id) {
+        for (int i = 0; i < jogadores.size(); i++) {
+            Jogador j = jogadores.get(i);
+            if (j.getId() == id) {
+                jogadores.remove(i);
+                return;
+            }
+        }
+        System.out.println("Jogador com ID " + id + " não encontrado no time.");
+    }
        public void printAttributes() {
         System.out.println("ID: " + id);
         System.out.println("Nome do time: " + nome);
         System.out.println("Jogadores: " + jogadores.size());
-        System.out.println("##");
+      
         for (int i = 0; i < this.jogadores.size(); i++) {
             Jogador j = jogadores.get(i);
             j.printAttributes();
